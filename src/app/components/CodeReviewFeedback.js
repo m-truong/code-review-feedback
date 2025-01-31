@@ -1,7 +1,9 @@
-// import Image from "next/image";
 import React from "react";
 
 const FeedbackSystem = () => {
+  // TODO: Implement the upvote and downvote logic.
+
+
   return (
     <div className="my-0 mx-auto text-center w-mx-1200">
       <div className="flex wrap justify-content-center mt-30 gap-30">
