@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 // TODO: pass props down into the ReviewSquare component
 const ReviewSquare = ({ title }) => {
@@ -7,16 +8,42 @@ const ReviewSquare = ({ title }) => {
     const [upvoteCount, setUpvoteCount] = useState(0);
     const [downvoteCount, setDownvoteCount] = useState(0);
 
-    const handleUpvoteClick = () => {
+    const handleUpvoteClick = (e) => {
         setUpvoteCount(upvoteCount + 1);
-        console.log(this);
+        console.log(e);
+        // e.target.style.backgroundColor = 'green';
     };
 
-    const handleDownvoteClick = () => {
+    const handleDownvoteClick = (e) => {
         // P: check <button> properties
         setDownvoteCount(downvoteCount + 1);
-        console.log(this);
+        console.log(e);
+        // e.target.style.backgroundColor = 'red';
     };
+
+    const upvoteRef = useRef(null);
+    const downvoteRef = useRef(null);
+
+    useEffect(() => {
+        if (upvoteRef.current) {
+            upvoteRef.current.style.border = '2px solid green';
+            const timer = setTimeout(() => {
+                upvoteRef.current.style.border = '';
+            }, 500);
+            return () => clearTimeout(timer);
+        }
+    }, [upvoteCount]);
+
+    useEffect(() => {
+        if (downvoteRef.current) {
+            downvoteRef.current.style.border = '2px solid red';
+            const timer = setTimeout(() => {
+                downvoteRef.current.style.border = '';
+            }, 500);
+            return () => clearTimeout(timer);
+        }
+    }, [downvoteCount]);
+
 
     // TODO: plan if passing upvote/downvote logic down as props or if it should be handled in this component
     // probably upvotes and downvotes in here
@@ -39,13 +66,13 @@ const ReviewSquare = ({ title }) => {
 
 
 
-          <p className="my-10 mx-0" data-testid="upvote-count-0">
+          <p  className="my-10 mx-0" data-testid="upvote-count-0">
           {/* TODO: animate this change */}
-            Upvotes: <strong>{upvoteCount}</strong>
+            Upvotes: <strong ref={upvoteRef}>{upvoteCount}</strong>
           </p>
-          <p className="my-10 mx-0" data-testid="downvote-count-0">
+          <p ref={downvoteRef} className="my-10 mx-0" data-testid="downvote-count-0">
           {/* TODO: animate this change */}
-            Downvotes: <strong>{downvoteCount}</strong>
+            Downvotes: <strong ref={downvoteRef}>{downvoteCount}</strong>
           </p>
         </div>
       </div>
