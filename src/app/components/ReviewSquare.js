@@ -1,7 +1,22 @@
 import React from 'react';
+import { useState } from 'react';
 
 // TODO: pass props down into the ReviewSquare component
-const ReviewSquare = ({ title, upvotes, downvotes }) => {
+const ReviewSquare = ({ title }) => {
+
+    const [upvoteCount, setUpvoteCount] = useState(0);
+    const [downvoteCount, setDownvoteCount] = useState(0);
+
+    const handleUpvoteClick = () => {
+        setUpvoteCount(upvoteCount + 1);
+        console.log(this);
+    };
+
+    const handleDownvoteClick = () => {
+        // P: check <button> properties
+        setDownvoteCount(downvoteCount + 1);
+        console.log(this);
+    };
 
     // TODO: plan if passing upvote/downvote logic down as props or if it should be handled in this component
     // probably upvotes and downvotes in here
@@ -13,19 +28,24 @@ const ReviewSquare = ({ title, upvotes, downvotes }) => {
           <h2>{title}</h2>
           <div className="flex my-30 mx-0 justify-content-around">
           {/* TODO: this button needs a single function that'll handle onClick for upVote*/}
-            <button className="py-10 px-15" data-testid="upvote-btn-0">
+            <button onClick={handleUpvoteClick} className="py-10 px-15" data-testid="upvote-btn-0">
               👍 Upvote
             </button>
           {/* TODO: this button needs a single function that'll handle onClick for downVote*/}
-            <button className="py-10 px-15 danger" data-testid="downvote-btn-0">
+            <button onClick ={handleDownvoteClick} className="py-10 px-15 danger" data-testid="downvote-btn-0">
               👎 Downvote
             </button>
           </div>
+
+
+
           <p className="my-10 mx-0" data-testid="upvote-count-0">
-            Upvotes: <strong>{0}</strong>
+          {/* TODO: animate this change */}
+            Upvotes: <strong>{upvoteCount}</strong>
           </p>
           <p className="my-10 mx-0" data-testid="downvote-count-0">
-            Downvotes: <strong>{0}</strong>
+          {/* TODO: animate this change */}
+            Downvotes: <strong>{downvoteCount}</strong>
           </p>
         </div>
       </div>

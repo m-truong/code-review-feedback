@@ -23,3 +23,13 @@
 .w-300 {
   width: 300px;
 }
+
+/* p & strong {
+  transition: background 300ms, box-shadow 300ms;
+} */
+
+/* p & strong:hover {
+  background: yellow;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+} */
+

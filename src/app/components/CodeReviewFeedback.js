@@ -4,7 +4,9 @@ import ReviewSquare from "./ReviewSquare";
 const FeedbackSystem = () => {
   // TODO: Implement the upvote and downvote logic.
 
+  // TODO: display animation; probably use window animation or CSS animation
 
+  // const userI
   return (
     <>
     {/* TODO: will have to correct the CSS and ensure it displays correctly */}
